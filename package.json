@@ -1,0 +1,21 @@
+{
+  "name": "ngraph.centrality",
+  "version": "0.1.0",
+  "description": "Module to calculate graph centrality metrics",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "keywords": [
+    "graph",
+    "centrality",
+    "betweenness",
+    "degree"
+  ],
+  "author": "Andrei Kashcha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anvaka/ngraph.centrality"
+  }
+}
