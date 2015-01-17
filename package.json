@@ -17,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/anvaka/ngraph.centrality"
+  },
+  "devDependencies": {
+    "ngraph.graph": "0.0.6"
   }
 }
