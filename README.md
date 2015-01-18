@@ -1,8 +1,15 @@
 # ngraph.centrality
 
-Module to calculate graph centrality metrics. Library computes degree centrality
+Module to calculate graph centrality metrics. Library computes centrality
 for entire graph and returns list of nodes in descending order of centrality:
-`[{ key: nodeId, value: centrality_value }, ... ]`
+
+``` javascript
+[
+  { key: nodeId, value: centrality_value },
+  { key: secondNodeId, value: centrality_value },
+  // ...
+]
+```
 
 # usage
 
