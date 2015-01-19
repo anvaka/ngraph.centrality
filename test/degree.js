@@ -1,4 +1,5 @@
 var centrality = require('../');
+var generator = require('ngraph.generators');
 var createGraph = require('ngraph.graph');
 var test = require('tap').test;
 
@@ -15,6 +16,19 @@ test('It finds degree centrality', function(t) {
   t.equals(degreeCentrality[3], 1, 'Third node has one connection');
   t.end();
 });
+
+test('It finds complete graph centrality', function(t) {
+  var g = generator.complete(6);
+
+  var degreeCentrality = centrality.degree(g);
+  g.forEachNode(verifyDegree);
+  t.end();
+
+  function verifyDegree(node) {
+    t.equals(degreeCentrality[node.id], 5);
+  }
+});
+
 
 test('it finds indegree centrality', function(t) {
   var g = createGraph();
