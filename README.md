@@ -1,4 +1,4 @@
-# ngraph.centrality
+# ngraph.centrality [![Build Status](https://travis-ci.org/anvaka/ngraph.centrality.svg)](https://travis-ci.org/anvaka/ngraph.centrality)
 
 Library computes centrality for entire graph and returns object, where keys are
 nodes' identifiers and values are centrality values:
