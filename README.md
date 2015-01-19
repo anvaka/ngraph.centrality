@@ -5,7 +5,7 @@ nodes' identifiers and values are centrality values:
 
 ``` javascript
 {
-  node_1: centrality_value_for_node_1
+  node_1: centrality_value_for_node_1,
   node_2: centrality_value_for_node_2
   // ...
 }
