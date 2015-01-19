@@ -36,9 +36,29 @@ var sameAsDegreeCentrality = centrality.degree(g, 'inout');
 Performance of degree centrality calculation is:
 
 * **inout**: `O(n)`, where `n` is number of nodes
-* **in** and **out**: `O(n * e)`, where `e` is the average number of edges per
+* **in** or **out**: `O(n * e)`, where `e` is the average number of edges per
 node
 
+
+## [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality)
+
+``` javascript
+var centrality = require('ngraph.centrality');
+var g = require('ngraph.graph')();
+
+// this will consider graph as undirected:
+var betweenness = centrality.betweenness(g);
+
+// this will consider graph as directed:
+var directedBetweenness = centrality.betweenness(g, true);
+```
+
+Performance of betweenness calculation is `O(n * m)` time, and `O(n + m)` space
+where `n` is number of nodes and `m` is number of edges.
+
+This library implements Brandes's algorithm published in [A Faster Algorithm for Betweenness Centrality](http://www.inf.uni-konstanz.de/algo/publications/b-fabc-01.pdf)
+and further discussed in [On Variants of Shortest-Path Betweenness
+Centrality and their Generic Computation](http://www.inf.uni-konstanz.de/algo/publications/b-vspbc-08.pdf)
 
 # install
 
