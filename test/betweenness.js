@@ -1,4 +1,5 @@
 var centrality = require('../');
+var generator = require('ngraph.generators');
 var createGraph = require('ngraph.graph');
 var test = require('tap').test;
 
@@ -9,9 +10,9 @@ test('It finds betweenness centrality', function(t) {
 
   var betweenness = centrality.betweenness(g);
 
-  t.equals(betweenness.length, 3, 'Three nodes considered');
-  t.equals(betweenness[0].key, '2', 'Second node has largest number of shortest paths');
-  t.equals(betweenness[0].value, 1, 'Second node centrality is 1');
+  t.equals(Object.keys(betweenness).length, 3, 'Three nodes considered');
+  t.equals(betweenness[2], 1, 'Second node centrality is 1');
+  t.equals(betweenness[1], betweenness[3], 'First and last node have the same value');
   t.end();
 });
 
@@ -30,29 +31,29 @@ test('It can find betweenness centrality in oriented graph', function(t) {
 
   var betweenness = centrality.betweenness(g, true);
 
-  t.equals(betweenness.length, 4, 'All nodes considered');
-  t.equals(betweenness[0].key, '3', 'Third node has largest number of shortest paths');
-  t.equals(betweenness[0].value, 1, 'Third node has correct betweenness');
+  t.equals(Object.keys(betweenness).length, 4, 'All nodes considered');
+  t.equals(betweenness[3], 1, 'Third node has correct betweenness');
+  t.equals(betweenness[1], 0, 'First node has correct betweenness');
   t.end();
 });
 
 test('complete graph has 0 betweenness', function(t) {
-  var completeGraph = require('ngraph.generators').complete(5);
+  var completeGraph = generator.complete(5);
   var betweenness = centrality.betweenness(completeGraph);
-  for (var i = 0; i < betweenness.length; ++i) {
-    t.equals(betweenness[i].value, 0, 'Complete graph should have 0 betweenness');
-  }
+  completeGraph.forEachNode(function (node) {
+    t.equals(betweenness[node.id], 0, 'Complete graph should have 0 betweenness');
+  });
 
   t.end();
 });
 
 test('circle should have 1 betweenness', function (t) {
-  var circle = require('ngraph.generators').path(5);
+  var circle = generator.path(5);
   circle.addLink(4, 0); // convert path to circle
   var betweenness = centrality.betweenness(circle);
-  for (var i = 0; i < betweenness.length; ++i) {
-    t.equals(betweenness[i].value, 1, 'Circle graph should have 1 betweenness');
-  }
+  circle.forEachNode(function (node) {
+    t.equals(betweenness[node.id], 1, 'Circle graph should have 1 betweenness');
+  });
 
   t.end();
 });

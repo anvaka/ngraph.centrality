@@ -1,14 +1,14 @@
 # ngraph.centrality
 
-Module to calculate graph centrality metrics. Library computes centrality
-for entire graph and returns list of nodes in descending order of centrality:
+Library computes centrality for entire graph and returns object, where keys are
+nodes' identifiers and values are centrality values:
 
 ``` javascript
-[
-  { key: nodeId, value: centrality_value },
-  { key: secondNodeId, value: centrality_value },
+{
+  node_1: centrality_value_for_node_1
+  node_2: centrality_value_for_node_2
   // ...
-]
+}
 ```
 
 # usage
@@ -36,7 +36,7 @@ var sameAsDegreeCentrality = centrality.degree(g, 'inout');
 Performance of degree centrality calculation is:
 
 * **inout**: `O(n)`, where `n` is number of nodes
-* **in** or **out**: `O(n * e)`, where `e` is the average number of edges per
+* **in** or **out**: `O(n * a)`, where `a` is the average number of edges per
 node
 
 
@@ -53,12 +53,12 @@ var betweenness = centrality.betweenness(g);
 var directedBetweenness = centrality.betweenness(g, true);
 ```
 
-Performance of betweenness calculation is `O(n * m)` time, and `O(n + m)` space
-where `n` is number of nodes and `m` is number of edges.
+Performance of betweenness calculation is `O(n * e)` time, and `O(n + e)` space
+where `n` is number of nodes and `e` is number of edges.
 
 This library implements Brandes's algorithm published in [A Faster Algorithm for Betweenness Centrality](http://www.inf.uni-konstanz.de/algo/publications/b-fabc-01.pdf)
 and further discussed in [On Variants of Shortest-Path Betweenness
-Centrality and their Generic Computation](http://www.inf.uni-konstanz.de/algo/publications/b-vspbc-08.pdf)
+Centrality and their Generic Computation](http://www.inf.uni-konstanz.de/algo/publications/b-vspbc-08.pdf).
 
 # install
 

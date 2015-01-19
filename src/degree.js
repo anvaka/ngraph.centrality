@@ -14,7 +14,7 @@ module.exports = degree;
 function degree(graph, kind) {
   var getNodeDegree,
     sortedDegrees = [],
-    result = [],
+    result = Object.create(null),
     nodeDegree;
 
   kind = (kind || 'both').toLowerCase();
@@ -30,31 +30,11 @@ function degree(graph, kind) {
 
   graph.forEachNode(calculateNodeDegree);
 
-  for (nodeDegree in sortedDegrees) {
-    if (sortedDegrees.hasOwnProperty(nodeDegree)) {
-      var nodes = sortedDegrees[nodeDegree];
-      if (nodes) {
-        for (var j = 0; j < nodes.length; ++j) {
-          result.unshift({
-            key: nodes[j],
-            value: parseInt(nodeDegree, 10)
-          });
-        }
-      }
-    }
-  }
-
   return result;
 
   function calculateNodeDegree(node) {
-    var links = graph.getLinks(node.id),
-      nodeDegree = getNodeDegree(links, node.id);
-
-    if (!sortedDegrees.hasOwnProperty(nodeDegree)) {
-      sortedDegrees[nodeDegree] = [node.id];
-    } else {
-      sortedDegrees[nodeDegree].push(node.id);
-    }
+    var links = graph.getLinks(node.id);
+    result[node.id] = getNodeDegree(links, node.id);
   }
 }
 

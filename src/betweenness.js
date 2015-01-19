@@ -22,21 +22,16 @@ function betweennes(graph, oriented) {
   graph.forEachNode(setCentralityToZero);
   graph.forEachNode(calculateCentrality);
 
-  return Object.keys(centrality).sort(byValue).map(toKeyValue);
-
-  function byValue(x, y) {
-    return centrality[y] - centrality[x];
-  }
-
-  function toKeyValue(nodeId) {
-    var nodeBetweenness = centrality[nodeId];
+  if (!oriented) {
     // The centrality scores need to be divided by two if the graph is not oriented,
     // since all shortest paths are considered twice
-    if (!oriented) nodeBetweenness /= 2;
-    return {
-      key: nodeId,
-      value: nodeBetweenness
-    };
+    Object.keys(centrality).forEach(divideByTwo);
+  }
+
+  return centrality;
+
+  function divideByTwo(key) {
+    centrality[key] /= 2;
   }
 
   function setCentralityToZero(node) {
