@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "ngraph.generators": "0.0.10",
-    "ngraph.graph": "0.0.6"
+    "ngraph.graph": "0.0.6",
+    "tap": "^0.5.0"
   }
 }
