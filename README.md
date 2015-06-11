@@ -81,7 +81,10 @@ node
 var centrality = require('ngraph.centrality');
 var g = require('ngraph.graph')();
 // Let's use the same graph as before:
-
+g.addLink('fortran', 'c');
+g.addLink('c', 'c++');
+g.addLink('c++', 'perl');
+g.addLink('c', 'javascript');
 
 // this will consider graph as undirected:
 var betweenness = centrality.betweenness(g);
