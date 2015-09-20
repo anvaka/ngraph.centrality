@@ -19,8 +19,8 @@
     "url": "https://github.com/anvaka/ngraph.centrality"
   },
   "devDependencies": {
-    "ngraph.generators": "0.0.15",
-    "ngraph.graph": "0.0.11",
-    "tap": "0.5.0"
+    "ngraph.generators": "0.0.16",
+    "ngraph.graph": "0.0.12",
+    "tap": "^1.4.1"
   }
 }
