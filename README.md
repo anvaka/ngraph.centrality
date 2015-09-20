@@ -19,14 +19,49 @@ nodes' identifiers and values are centrality values:
 var centrality = require('ngraph.centrality');
 var g = require('ngraph.graph')();
 
+// Let's build a simple graph:
+g.addLink('fortran', 'c');
+g.addLink('c', 'c++');
+g.addLink('c++', 'perl');
+g.addLink('c', 'javascript');
+
 // this will consider graph as undirected:
 var degreeCentrality = centrality.degree(g);
 
+/*
+degreeCentrality is:
+{
+  "fortran": 1,
+  "c": 3,
+  "c++": 2,
+  "perl": 1,
+  "javascript": 1
+}
+*/
+
 // This will compute in-centrality:
 var inCentrality = centrality.degree(g, 'in');
+/* inCentrality is 
+{
+  "fortran": 0,
+  "c": 1,
+  "c++": 1,
+  "perl": 1,
+  "javascript": 1
+}
+*/
 
 // out-centrality:
 var outCentrality = centrality.degree(g, 'out');
+/* outCentrality is
+{
+  "fortran": 1,
+  "c": 2,
+  "c++": 1,
+  "perl": 0,
+  "javascript": 0
+}
+*/
 
 // You can also pass 'inout' or 'both' to get same results
 // as `degreeCentrality`
@@ -45,12 +80,36 @@ node
 ``` javascript
 var centrality = require('ngraph.centrality');
 var g = require('ngraph.graph')();
+// Let's use the same graph as before:
+g.addLink('fortran', 'c');
+g.addLink('c', 'c++');
+g.addLink('c++', 'perl');
+g.addLink('c', 'javascript');
 
 // this will consider graph as undirected:
 var betweenness = centrality.betweenness(g);
+/* betweenness centrality is:
+
+{
+  "fortran": 0,
+  "c": 5,
+  "c++": 3,
+  "perl": 0,
+  "javascript": 0
+}
+*/
 
 // this will consider graph as directed:
 var directedBetweenness = centrality.betweenness(g, true);
+/* directedBetweenness is:
+{
+  "fortran": 0,
+  "c": 3,
+  "c++": 2,
+  "perl": 0,
+  "javascript": 0
+}
+*/
 ```
 
 Performance of betweenness calculation is `O(n * e)` time, and `O(n + e)` space
