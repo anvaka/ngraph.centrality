@@ -17,6 +17,19 @@ test('It finds degree centrality', function(t) {
   t.end();
 });
 
+test('It finds degree centrality for unconnected graph', function(t) {
+  var g = createGraph();
+  g.addNode(1);
+  g.addNode(2);
+
+  var degreeCentrality = centrality.degree(g);
+
+  t.equals(Object.keys(degreeCentrality).length, 2, 'Two nodes considered');
+  t.equals(degreeCentrality[1], 0, 'First node has no connections');
+  t.equals(degreeCentrality[2], 0, 'Second node has no connection');
+  t.end();
+});
+
 test('It finds complete graph centrality', function(t) {
   var g = generator.complete(6);
 
