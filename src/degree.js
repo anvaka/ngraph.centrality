@@ -12,10 +12,8 @@ module.exports = degree;
  *   'inout' - (default) generic degree centrality is calculated
  */
 function degree(graph, kind) {
-  var getNodeDegree,
-    sortedDegrees = [],
-    result = Object.create(null),
-    nodeDegree;
+  var getNodeDegree;
+  var result = Object.create(null);
 
   kind = (kind || 'both').toLowerCase();
   if (kind === 'both' || kind === 'inout') {

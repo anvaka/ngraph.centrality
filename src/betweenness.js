@@ -72,7 +72,6 @@ function betweennes(graph, oriented) {
 
     while (Q.length) {
       var v = Q.shift();
-      var dedup = Object.create(null);
       S.push(v);
       graph.forEachLinkedNode(v, toId, oriented);
     }
