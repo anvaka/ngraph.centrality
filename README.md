@@ -119,6 +119,29 @@ This library implements Brandes's algorithm published in [A Faster Algorithm for
 and further discussed in [On Variants of Shortest-Path Betweenness
 Centrality and their Generic Computation](http://www.inf.uni-konstanz.de/algo/publications/b-vspbc-08.pdf).
 
+## [Closeness centrality](https://en.wikipedia.org/wiki/Closeness_centrality)
+
+ In a connected graph, the normalized closeness centrality of a node is the average
+ length of the shortest path between the node and all other nodes in the
+ graph. Thus the more central a node is, the closer it is to all other nodes.
+
+ ``` js
+var centrality = require('ngraph.centrality');
+var g = createGraph();
+g.addLink(1, 2);
+g.addLink(2, 3);
+
+var closeness = centrality.closeness(g);
+
+// closeness is: 
+// { 
+//   '1': 0.6666666666666666,
+//   '2': 1,
+//   '3': 0.6666666666666666
+// }
+ ```
+ 
+
 # install
 
 With [npm](https://npmjs.org) do:
