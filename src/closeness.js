@@ -1,18 +1,18 @@
 module.exports = closeness;
 
+/**
+ * In a connected graph, the normalized closeness centrality of a node is the average
+ * length of the shortest path between the node and all other nodes in the
+ * graph. Thus the more central a node is, the closer it is to all other nodes.
+ */
 function closeness(graph, oriented) {
-  var Q = [],
-    S = []; // Queue and Stack
-  // list of predcessors on shorteest paths from source
-  var pred = Object.create(null);
+  var Q = [];
+  // list of predcessors on shortest paths from source
   // distance from source
   var dist = Object.create(null);
-  // number of shortest paths from source to key
-  var sigma = Object.create(null);
 
   var currentNode;
   var centrality = Object.create(null);
-  var length = graph.getNodesCount();
 
   graph.forEachNode(setCentralityToZero);
   graph.forEachNode(calculateCentrality);
@@ -46,43 +46,24 @@ function closeness(graph, oriented) {
   function singleSourceShortestPath(source) {
     graph.forEachNode(initNode);
     dist[source] = 0;
-    sigma[source] = 1;
     Q.push(source);
 
     while (Q.length) {
       var v = Q.shift();
-      var dedup = Object.create(null);
-      S.push(v);
-      graph.forEachLinkedNode(v, toId, oriented);
-    }
-
-    function toId(otherNode) {
-      // NOTE: This code will also consider multi-edges, which are often
-      // ignored by popular software (Gephi/NetworkX). Depending on your use
-      // case this may not be desired and deduping needs to be performed. To
-      // save memory I'm not deduping here...
-      processNode(otherNode.id);
+      graph.forEachLinkedNode(v, processNode, oriented);
     }
 
     function initNode(node) {
       var nodeId = node.id;
-      pred[nodeId] = []; // empty list
       dist[nodeId] = -1;
-      sigma[nodeId] = 0;
     }
 
-    function processNode(w) {
-      // path discovery
+    function processNode(otherNode) {
+      var w = otherNode.id
       if (dist[w] === -1) {
         // Node w is found for the first time
         dist[w] = dist[v] + 1;
         Q.push(w);
-      }
-      // path counting
-      if (dist[w] === dist[v] + 1) {
-        // edge (v, w) on a shortest path
-        sigma[w] += sigma[v];
-        pred[w].push(v);
       }
     }
   }
