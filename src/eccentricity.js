@@ -28,18 +28,12 @@ function eccentricity(graph, oriented) {
   }
 
   function accumulate() {
-    // Add all distances for node to array, excluding -1s
-    var distances = Object.keys(dist).map(function(key) {return dist[key]}).filter(function(val){return val !== -1});
+    var maxDist = 0;
+    Object.keys(dist).forEach(function (key) {
+      var val = dist[key];
+      if (maxDist < val) maxDist = val;
+    });
 
-    // Get the maximum distance from this node to any other node
-    // Isolated nodes have no distances to other nodes, so set to 0 if length of distances array has no length
-    var maxDist;
-    if (distances.length) {
-      maxDist = Math.max.apply(null, distances);	
-    } else {
-      maxDist = 0;
-    }
-	
     centrality[currentNode] = maxDist;
   }
 
