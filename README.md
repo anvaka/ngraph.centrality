@@ -141,6 +141,35 @@ var closeness = centrality.closeness(g);
 // }
  ```
  
+ ## [Eccentricity centrality](https://en.wikipedia.org/wiki/Distance_(graph_theory))
+
+ The eccentricity centrality of a node is the greatest distance between that node and
+ any other node in the network. It can be thought of as how far a node is from the 
+ node most distant from it in the graph.
+
+ ``` js
+var centrality = require('ngraph.centrality');
+var g = createGraph();
+g.addLink(1, 2);
+g.addLink(2, 3);
+
+var eccentricity = centrality.eccentricity(g);
+
+// eccentricity is: 
+// { 
+//   '1': 2,
+//   '2': 1,
+//   '3': 2
+// }
+ ```
+ 
+ Since the graph's diameter equals maximum eccentricity, we can easily calculate this using the returned object:
+ 
+ ```js
+ var eccentricityValues = Object.keys(eccentricity).map(function(key) {return eccentricity[key]});
+ var diameter = Math.max.apply(null, eccentricityValues);
+ // Returns 2
+ ```
 
 # install
 
