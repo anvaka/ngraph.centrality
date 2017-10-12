@@ -7,7 +7,7 @@ module.exports = closeness;
  */
 function closeness(graph, oriented) {
   var Q = [];
-  // list of predcessors on shortest paths from source
+  // list of predecessors on shortest paths from source
   // distance from source
   var dist = Object.create(null);
 
