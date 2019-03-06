@@ -21,6 +21,6 @@
   "devDependencies": {
     "ngraph.generators": "0.0.17",
     "ngraph.graph": "0.0.12",
-    "tap": "^1.4.1"
+    "tap": "^12.5.3"
   }
 }
