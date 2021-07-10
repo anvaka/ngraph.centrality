@@ -1,4 +1,4 @@
-# ngraph.centrality [![Build Status](https://travis-ci.org/anvaka/ngraph.centrality.svg)](https://travis-ci.org/anvaka/ngraph.centrality)
+# ngraph.centrality [![build status](https://github.com/anvaka/ngraph.centrality/actions/workflows/tests.yaml/badge.svg)](https://github.com/anvaka/ngraph.centrality/actions/workflows/tests.yaml)
 
 Library computes centrality for entire graph and returns object, where keys are
 nodes' identifiers and values are centrality values:
