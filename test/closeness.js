@@ -9,9 +9,9 @@ test('It finds closeness centrality', function(t) {
 
   var closeness = centrality.closeness(g);
 
-  t.equals(Object.keys(closeness).length, 3, 'Three nodes considered');
-  t.equals(closeness[2], 1, 'Second node centrality is 1');
-  t.equals(closeness[1], closeness[3], 'First and last node have the same value');
+  t.equal(Object.keys(closeness).length, 3, 'Three nodes considered');
+  t.equal(closeness[2], 1, 'Second node centrality is 1');
+  t.equal(closeness[1], closeness[3], 'First and last node have the same value');
   t.end();
 });
 

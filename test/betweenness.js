@@ -10,9 +10,9 @@ test('It finds betweenness centrality', function(t) {
 
   var betweenness = centrality.betweenness(g);
 
-  t.equals(Object.keys(betweenness).length, 3, 'Three nodes considered');
-  t.equals(betweenness[2], 1, 'Second node centrality is 1');
-  t.equals(betweenness[1], betweenness[3], 'First and last node have the same value');
+  t.equal(Object.keys(betweenness).length, 3, 'Three nodes considered');
+  t.equal(betweenness[2], 1, 'Second node centrality is 1');
+  t.equal(betweenness[1], betweenness[3], 'First and last node have the same value');
   t.end();
 });
 
@@ -31,9 +31,9 @@ test('It can find betweenness centrality in oriented graph', function(t) {
 
   var betweenness = centrality.betweenness(g, true);
 
-  t.equals(Object.keys(betweenness).length, 4, 'All nodes considered');
-  t.equals(betweenness[3], 1, 'Third node has correct betweenness');
-  t.equals(betweenness[1], 0, 'First node has correct betweenness');
+  t.equal(Object.keys(betweenness).length, 4, 'All nodes considered');
+  t.equal(betweenness[3], 1, 'Third node has correct betweenness');
+  t.equal(betweenness[1], 0, 'First node has correct betweenness');
   t.end();
 });
 
@@ -41,7 +41,7 @@ test('complete graph has 0 betweenness', function(t) {
   var completeGraph = generator.complete(5);
   var betweenness = centrality.betweenness(completeGraph);
   completeGraph.forEachNode(function (node) {
-    t.equals(betweenness[node.id], 0, 'Complete graph should have 0 betweenness');
+    t.equal(betweenness[node.id], 0, 'Complete graph should have 0 betweenness');
   });
 
   t.end();
@@ -52,7 +52,7 @@ test('circle should have 1 betweenness', function (t) {
   circle.addLink(4, 0); // convert path to circle
   var betweenness = centrality.betweenness(circle);
   circle.forEachNode(function (node) {
-    t.equals(betweenness[node.id], 1, 'Circle graph should have 1 betweenness');
+    t.equal(betweenness[node.id], 1, 'Circle graph should have 1 betweenness');
   });
 
   t.end();

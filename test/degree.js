@@ -10,10 +10,10 @@ test('It finds degree centrality', function(t) {
 
   var degreeCentrality = centrality.degree(g);
 
-  t.equals(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
-  t.equals(degreeCentrality[1], 2, 'First node has two connections');
-  t.equals(degreeCentrality[2], 1, 'Second node has one connection');
-  t.equals(degreeCentrality[3], 1, 'Third node has one connection');
+  t.equal(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
+  t.equal(degreeCentrality[1], 2, 'First node has two connections');
+  t.equal(degreeCentrality[2], 1, 'Second node has one connection');
+  t.equal(degreeCentrality[3], 1, 'Third node has one connection');
   t.end();
 });
 
@@ -24,9 +24,9 @@ test('It finds degree centrality for unconnected graph', function(t) {
 
   var degreeCentrality = centrality.degree(g);
 
-  t.equals(Object.keys(degreeCentrality).length, 2, 'Two nodes considered');
-  t.equals(degreeCentrality[1], 0, 'First node has no connections');
-  t.equals(degreeCentrality[2], 0, 'Second node has no connection');
+  t.equal(Object.keys(degreeCentrality).length, 2, 'Two nodes considered');
+  t.equal(degreeCentrality[1], 0, 'First node has no connections');
+  t.equal(degreeCentrality[2], 0, 'Second node has no connection');
   t.end();
 });
 
@@ -38,7 +38,7 @@ test('It finds complete graph centrality', function(t) {
   t.end();
 
   function verifyDegree(node) {
-    t.equals(degreeCentrality[node.id], 5);
+    t.equal(degreeCentrality[node.id], 5);
   }
 });
 
@@ -50,9 +50,9 @@ test('it finds indegree centrality', function(t) {
 
   var degreeCentrality = centrality.degree(g, 'in');
 
-  t.equals(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
-  t.equals(degreeCentrality[1], 0, 'First node has no incoming edges');
-  t.equals(degreeCentrality[2], degreeCentrality[3], 'Second and third nodes have correct centrality');
+  t.equal(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
+  t.equal(degreeCentrality[1], 0, 'First node has no incoming edges');
+  t.equal(degreeCentrality[2], degreeCentrality[3], 'Second and third nodes have correct centrality');
   t.end();
 });
 
@@ -64,8 +64,8 @@ test('it finds outdegree centrality', function(t) {
 
   var degreeCentrality = centrality.degree(g, 'out');
 
-  t.equals(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
-  t.equals(degreeCentrality[1], 2, 'First node has two outgoing edges');
-  t.equals(degreeCentrality[3], 0, 'Third node has no outgoing edgese');
+  t.equal(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
+  t.equal(degreeCentrality[1], 2, 'First node has two outgoing edges');
+  t.equal(degreeCentrality[3], 0, 'Third node has no outgoing edgese');
   t.end();
 });

@@ -9,8 +9,8 @@ test('It finds eccentricity centrality', function(t) {
 
   var eccentricity = centrality.eccentricity(g);
 
-  t.equals(Object.keys(eccentricity).length, 3, 'Three nodes considered');
-  t.equals(eccentricity[2], 1, 'Second node eccentricity is 1');
-  t.equals(eccentricity[1], eccentricity[3], 'First and third node both have the same eccentricity value (2)');
+  t.equal(Object.keys(eccentricity).length, 3, 'Three nodes considered');
+  t.equal(eccentricity[2], 1, 'Second node eccentricity is 1');
+  t.equal(eccentricity[1], eccentricity[3], 'First and third node both have the same eccentricity value (2)');
   t.end();
 });
