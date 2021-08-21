@@ -66,6 +66,41 @@ test('it finds outdegree centrality', function(t) {
 
   t.equal(Object.keys(degreeCentrality).length, 3, 'Three nodes considered');
   t.equal(degreeCentrality[1], 2, 'First node has two outgoing edges');
-  t.equal(degreeCentrality[3], 0, 'Third node has no outgoing edgese');
+  t.equal(degreeCentrality[3], 0, 'Third node has no outgoing edges');
+  t.end();
+});
+
+test('it throws on unknown kind', function(t) {
+  var g = createGraph();
+  g.addLink(1, 2);
+  g.addLink(1, 3);
+
+  t.throws(function() {
+    centrality.degree(g, 'unknown');
+  });
+  t.end();
+});
+
+test('it can compute indegree of isolated node', function(t) {
+  var g = createGraph();
+  g.addNode(1);
+
+  var degreeCentrality = centrality.degree(g, 'in');
+
+  t.equal(Object.keys(degreeCentrality).length, 1, 'One node considered');
+  t.equal(degreeCentrality[1], 0, 'First node has no incoming edges');
+  t.end();
+});
+
+test('it compute outdegree of islated nodes', function(t) {
+  var g = createGraph();
+  g.addNode(1);
+  g.addNode(2);
+
+  var degreeCentrality = centrality.degree(g, 'out');
+
+  t.equal(Object.keys(degreeCentrality).length, 2, 'Two nodes considered');
+  t.equal(degreeCentrality[1], 0, 'First node has no outgoing edges');
+  t.equal(degreeCentrality[2], 0, 'Second node has no outgoing edges');
   t.end();
 });
