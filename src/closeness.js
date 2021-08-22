@@ -35,7 +35,7 @@ function closeness(graph, oriented) {
     // Set number of reachable nodes
     var reachableNodesTotal = distances.length;
     // Compute sum of all distances for node
-    var totalDistance = distances.reduce(function(a,b) { return a + b });
+    var totalDistance = distances.reduce(function(a,b) { return a + b }, 0);
     if (totalDistance > 0) {
       centrality[currentNode] = ((reachableNodesTotal - 1) / totalDistance); 
     } else {
