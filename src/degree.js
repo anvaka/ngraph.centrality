@@ -40,9 +40,10 @@ function inDegreeCalculator(links, nodeId) {
   var total = 0;
   if (!links) return total;
 
-  for (var i = 0; i < links.length; i += 1) {
-    total += (links[i].toId === nodeId) ? 1 : 0;
-  }
+  links.forEach(function(link) {
+    total += (link.toId === nodeId) ? 1 : 0;
+  });
+
   return total;
 }
 
@@ -50,14 +51,16 @@ function outDegreeCalculator(links, nodeId) {
   var total = 0;
   if (!links) return total;
 
-  for (var i = 0; i < links.length; i += 1) {
-    total += (links[i].fromId === nodeId) ? 1 : 0;
-  }
+  links.forEach(function(link) {
+    total += (link.fromId === nodeId) ? 1 : 0;
+  });
   return total;
 }
 
 function inoutDegreeCalculator(links) {
   if (!links) return 0;
 
-  return links.length;
+  // different versions of ngraph have different implementations of
+  // of links (either as array or as a set)
+  return (links.size || links.length);
 }
