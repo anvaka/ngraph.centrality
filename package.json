@@ -4,7 +4,7 @@
   "description": "Module to calculate graph centrality metrics",
   "main": "index.js",
   "scripts": {
-    "test": "tap --branches=80 --lines=80 --statements=80 --functions=80 test/*.js"
+    "test": "tap -- --branches=80 --lines=80 --statements=80 --functions=80 test/*.js"
   },
   "keywords": [
     "graph",
@@ -21,6 +21,6 @@
   "devDependencies": {
     "ngraph.generators": "^20.0.0",
     "ngraph.graph": "^20.0.0",
-    "tap": "^16.3.0"
+    "tap": "^19.2.0"
   }
 }
