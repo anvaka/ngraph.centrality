@@ -5,7 +5,6 @@ module.exports = eccentricity;
  * any other node in the network. 
  */
 function eccentricity(graph, oriented) {
-  var Q = [];
   // distance from source
   var dist = Object.create(null);
 
@@ -38,12 +37,15 @@ function eccentricity(graph, oriented) {
   }
 
   function singleSourceShortestPath(source) {
+    var q = [source];
+    var qIndex = 0;
+
     graph.forEachNode(initNode);
     dist[source] = 0;
-    Q.push(source);
 
-    while (Q.length) {
-      var v = Q.shift();
+    while (qIndex < q.length) {
+      var v = q[qIndex];
+      qIndex += 1;
       graph.forEachLinkedNode(v, processNode, oriented);
     }
 
@@ -57,7 +59,7 @@ function eccentricity(graph, oriented) {
       if (dist[w] === -1) {
         // Node w is found for the first time
         dist[w] = dist[v] + 1;
-        Q.push(w);
+        q.push(w);
       }
     }
   }

@@ -5,8 +5,7 @@ module.exports = betweennes;
  * as a reference for this implementation
  */
 function betweennes(graph, oriented) {
-  var Q = [],
-    S = []; // Queue and Stack
+  var S = []; // Stack
   // list of predecessors on shortest paths from source
   var pred = Object.create(null);
   // distance from source
@@ -65,13 +64,16 @@ function betweennes(graph, oriented) {
   }
 
   function singleSourceShortestPath(source) {
+    var Q = [source];
+    var qIndex = 0;
+
     graph.forEachNode(initNode);
     dist[source] = 0;
     sigma[source] = 1;
-    Q.push(source);
 
-    while (Q.length) {
-      var v = Q.shift();
+    while (qIndex < Q.length) {
+      var v = Q[qIndex];
+      qIndex += 1;
       S.push(v);
       graph.forEachLinkedNode(v, toId, oriented);
     }
